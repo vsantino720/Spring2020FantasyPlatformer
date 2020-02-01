@@ -1,7 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 6613bb033cbe33740b2c55d4a58a16d2
 folderAsset: yes
 DefaultImporter:
+=======
+<<<<<<<< HEAD:Assets/Sprites/Characters/Player/Knight/Hit.meta
+guid: 85dc02a34f9eb42489c0402b7f9b6227
+folderAsset: yes
+DefaultImporter:
+========
+guid: fcddcdc77304cf64594fa562a89ab38b
+NativeFormatImporter:
+>>>>>>>> 9df2abc95e87c8add52673830a1fea8724d8b818:Assets/Animation/Assassin_Walk.anim.meta
+>>>>>>> 9df2abc95e87c8add52673830a1fea8724d8b818
   externalObjects: {}
   userData: 
   assetBundleName: 

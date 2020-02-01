@@ -1,7 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: b898e04edc31c4744926295c1077100c
 folderAsset: yes
 DefaultImporter:
+=======
+<<<<<<<< HEAD:Assets/Sprites/Characters/Player/Knight.meta
+guid: 0cf1bc4c4a68a8d48a598bde55e46c19
+folderAsset: yes
+DefaultImporter:
+========
+guid: b2ec8ee947cfe8647ab8fdd936042982
+NativeFormatImporter:
+>>>>>>>> 9df2abc95e87c8add52673830a1fea8724d8b818:Assets/Animation/Assassin_Jump.anim.meta
+>>>>>>> 9df2abc95e87c8add52673830a1fea8724d8b818
   externalObjects: {}
   userData: 
   assetBundleName: 

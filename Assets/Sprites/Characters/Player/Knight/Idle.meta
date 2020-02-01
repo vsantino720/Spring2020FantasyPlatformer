@@ -1,7 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 1202a79f8e1d34f44908fe28eb4cdd2b
 folderAsset: yes
 DefaultImporter:
+=======
+<<<<<<<< HEAD:Assets/Sprites/Characters/Player/Knight/Idle.meta
+guid: ef45b8a98499267469adb6c768ec8d60
+folderAsset: yes
+DefaultImporter:
+========
+guid: 15fc257058be383448c61a83dbb3fcfe
+NativeFormatImporter:
+>>>>>>>> 9df2abc95e87c8add52673830a1fea8724d8b818:Assets/Animation/Assassin_Idle.anim.meta
+>>>>>>> 9df2abc95e87c8add52673830a1fea8724d8b818
   externalObjects: {}
   userData: 
   assetBundleName: 
