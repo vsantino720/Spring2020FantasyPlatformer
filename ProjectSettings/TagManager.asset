@@ -4,9 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Wizard (Fire)
   - Ground
   - Edge
+=======
+  - SkeletonSpear
+>>>>>>> 9040a779d7a35cd1c92b405fc0764c8f90c144fa
   layers:
   - Default
   - TransparentFX
