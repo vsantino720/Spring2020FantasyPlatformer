@@ -12,7 +12,9 @@ public class SkeletonAI : MonoBehaviour
     private bool moving;
     public Transform attackPoint;
     public float attackRange = 0.5f;
+    public float playerRange = 1.2f;
     public LayerMask layers;
+    public int attackDamage = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +35,7 @@ public class SkeletonAI : MonoBehaviour
         }
 
         //Movement and attack
-        if (System.Math.Abs(player.position.x - transform.position.x) > 2.3)
+        if (System.Math.Abs(player.position.x - transform.position.x) > playerRange)
         {
             Move();
         }
@@ -60,9 +62,9 @@ public class SkeletonAI : MonoBehaviour
         animator.SetFloat("Action", 0);
         animator.SetTrigger("Attack");
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layers);
-        foreach(Collider2D enemy in hitPlayer)
+        foreach(Collider2D player in hitPlayer)
         {
-            Debug.Log("Hit");
+            player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
         }
         timeBetweenAttack = cooldownTime;
 

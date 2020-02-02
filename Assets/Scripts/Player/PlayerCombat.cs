@@ -14,8 +14,7 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 2f;
     float nextAttackTime = 0f;
     public LayerMask enemyLayers;
-    public int attackDamage = 1;
-
+    public int attackDamage = 2;
     private void Start()
     {
         currentHealth = maxHealth;
@@ -32,10 +31,11 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
+        Debug.Log("Took" + damage + "Damage");
         currentHealth -= damage;
-        //Play hit animation
+        animator.SetTrigger("Hurt");
         if (currentHealth <= 0)
         {
             Die();
@@ -44,7 +44,12 @@ public class PlayerCombat : MonoBehaviour
     void Die()
     {
         //Play Death animation
+        animator.SetBool("IsDead", true);
         Debug.Log("You Died");
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().simulated = false;
+        GetComponent<PlayerMovement>().enabled = false;
+        this.enabled = false;
         //Restart game from beginning
     }
 

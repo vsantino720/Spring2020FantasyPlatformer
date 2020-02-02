@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 4;
     int currentHealth;
     public Animator animator;
+    public GameObject GroundCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,9 @@ public class Enemy : MonoBehaviour
         //Die Animation
         Debug.Log("Enemy Died!");
         //Disable the enemy
+        GetComponent<SkeletonAI>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
+        GroundCheck.GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().simulated = false;
         this.enabled = false;
     }
