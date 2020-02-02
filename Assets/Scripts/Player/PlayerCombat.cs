@@ -8,13 +8,13 @@ public class PlayerCombat : MonoBehaviour
     public Animator animator;
 
     public Transform attackpoint;
-    public int maxHealth = 6;
+    public int maxHealth = 12;
     int currentHealth;
     public float attackRange = 0.5f;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
     public LayerMask enemyLayers;
-    public int attackDamage = 2;
+    public int attackDamage = 1;
 
     private void Start()
     {
@@ -59,6 +59,7 @@ public class PlayerCombat : MonoBehaviour
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
+        //Freeze Player for extent of the animation?
     }
 
     private void OnDrawGizmosSelected()

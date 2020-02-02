@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int maxHealth = 2;
+    public int maxHealth = 4;
     int currentHealth;
     public Animator animator;
-    public GameObject groundCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +16,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log("Took" + damage + "damage");
         // Play hurt animation
         animator.SetTrigger("Hurt");
 
@@ -34,7 +34,6 @@ public class Enemy : MonoBehaviour
         //Disable the enemy
         GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().simulated = false;
-        groundCollider.GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
     }
 }
