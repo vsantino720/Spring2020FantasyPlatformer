@@ -8,13 +8,18 @@ public class PlayerCombat : MonoBehaviour
     public Animator animator;
 
     public Transform attackpoint;
-
+    public int maxHealth = 6;
+    int currentHealth;
     public float attackRange = 0.5f;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
     public LayerMask enemyLayers;
     public int attackDamage = 2;
 
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -26,6 +31,21 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
+    }
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        //Play hit animation
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        //Play Death animation
+        Debug.Log("You Died");
+        //Restart game from beginning
     }
 
     void Attack()
