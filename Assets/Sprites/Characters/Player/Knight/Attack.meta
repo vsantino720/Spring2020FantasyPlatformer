@@ -1,11 +1,24 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
+guid: 83525f7758ca6ee4dae837ff5ddbc55c
+folderAsset: yes
+DefaultImporter:
+=======
+<<<<<<<< HEAD:Assets/Sprites/Characters/Player/Knight/Attack.meta
+=======
 guid: 81f05ebfdf54740fa8d67cf3d2e3d3b4
 =======
+>>>>>>> 4f086c9b6ee2c2afa0a498890e335bd5da4fa1dc
 guid: 1c8328944680aad4b9eb91c8826de71c
 >>>>>>> 9df2abc95e87c8add52673830a1fea8724d8b818
 folderAsset: yes
 DefaultImporter:
+========
+guid: 4cf1b2be7f9a511459f163a65a00be81
+NativeFormatImporter:
+>>>>>>>> 9df2abc95e87c8add52673830a1fea8724d8b818:Assets/Animation/Assassin.controller.meta
+>>>>>>> 9df2abc95e87c8add52673830a1fea8724d8b818
   externalObjects: {}
   userData: 
   assetBundleName: 
