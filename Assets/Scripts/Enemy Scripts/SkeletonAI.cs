@@ -13,6 +13,8 @@ public class SkeletonAI : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask layers;
+    public float AttackRangeX = 2.3f;
+    public float AttackRangeY = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,25 +35,22 @@ public class SkeletonAI : MonoBehaviour
         }
 
         //Movement and attack
-        if (System.Math.Abs(player.position.x - transform.position.x) > 2.3)
+        if (System.Math.Abs(player.position.x - transform.position.x) > AttackRangeX)
         {
             Move();
         }
-        else if (System.Math.Abs(player.position.y - transform.position.y) < 2)
+        else if (System.Math.Abs(player.position.y - transform.position.y) < AttackRangeY)
         {
             if (timeBetweenAttack <= 0)
             {
                 Attack();
-                
             }
-            
         }
         else
         {
             Idle();
         }
         timeBetweenAttack -= Time.deltaTime;
-        
     }
 
     //Skeleton attack method
@@ -65,9 +64,9 @@ public class SkeletonAI : MonoBehaviour
             Debug.Log("Hit");
         }
         timeBetweenAttack = cooldownTime;
-
     }
 
+    //Skeleton walk method
     void Move()
     {
         animator.SetFloat("Action", 1);
@@ -75,12 +74,13 @@ public class SkeletonAI : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, player.position, step);
     }
 
+    //Skeleton idle method
     void Idle()
     {
         animator.SetFloat("Action", 0);
-
     }
 
+    //Skeleton hitbox display
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
