@@ -11214,9 +11214,8 @@ MonoBehaviour:
   cooldownTime: 1.2
   maxHealth: 4
   attackRange: 2.68
-  playerRange: 2
   attackDamage: 1
-  startDazedTime: 0.5
+  startDazedTime: 5
 --- !u!95 &2050743620
 Animator:
   serializedVersion: 3

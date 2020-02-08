@@ -40,6 +40,7 @@ public class SkeletonSwordBehavior : MonoBehaviour
         else
         {
             speed = 0;
+            Idle();
             dazedTime -= Time.deltaTime;
         }
         //Skeleton turns around
@@ -55,12 +56,16 @@ public class SkeletonSwordBehavior : MonoBehaviour
         //Movement and attack
         if (System.Math.Abs(player.position.x - transform.position.x) > attackRange)
         {
-            Move();
+            if(dazedTime <= 0)
+            {
+                Move();
+            }
         }
         else if (System.Math.Abs(player.position.y - transform.position.y) < attackRange)
         {
-            if (timeBetweenAttack <= 0)
+            if ((timeBetweenAttack <= 0) && (dazedTime <= 0))
             {
+
                 Attack();
 
             }
