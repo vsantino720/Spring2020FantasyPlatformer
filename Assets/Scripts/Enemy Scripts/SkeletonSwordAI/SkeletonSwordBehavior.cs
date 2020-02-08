@@ -20,7 +20,6 @@ public class SkeletonSwordBehavior : MonoBehaviour
     public int maxHealth = 4;
     int currentHealth;
     public float attackRange = 0.5f;
-    public float playerRange = 1.2f;
     public int attackDamage = 1;
     private float dazedTime;
     public float startDazedTime = 0.6f;
@@ -54,11 +53,11 @@ public class SkeletonSwordBehavior : MonoBehaviour
         }
 
         //Movement and attack
-        if (System.Math.Abs(player.position.x - transform.position.x) > playerRange)
+        if (System.Math.Abs(player.position.x - transform.position.x) > attackRange)
         {
             Move();
         }
-        else if (System.Math.Abs(player.position.y - transform.position.y) < 2)
+        else if (System.Math.Abs(player.position.y - transform.position.y) < attackRange)
         {
             if (timeBetweenAttack <= 0)
             {
