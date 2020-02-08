@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SkeletonSpear
+  - Ground
+  - Wizard (Fire)
+  - Edge
   layers:
   - Default
   - TransparentFX
@@ -38,12 +42,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 606028147
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Foreground
-    uniqueID: 1969593431
     locked: 0

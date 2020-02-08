@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Assets/Scripts/Enemy Scripts/SkeletonAI.cs
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,27 @@ public class SkeletonAI : MonoBehaviour
     public float AttackRangeY = 2;
     // Start is called before the first frame update
     void Start()
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SkeletonAI : MonoBehaviour
+{
+    public Animator animator;
+    private float timeBetweenAttack;
+    public float cooldownTime;
+    public Transform player;
+    public float speed = 1.0f;
+    private bool moving;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public float playerRange = 1.2f;
+    public LayerMask layers;
+    public int attackDamage = 1;
+    // Start is called before the first frame update
+    void Start()
+>>>>>>> 014dd1495059547113de6aebf7610bfbee4f9a10:Assets/Scripts/Enemy Scripts/SkeletonSwordAI/SkeletonAI.cs
     {
         
     }
@@ -32,10 +54,17 @@ public class SkeletonAI : MonoBehaviour
         else
         {
             transform.localScale = new Vector3(1, 1, 1);
+<<<<<<< HEAD:Assets/Scripts/Enemy Scripts/SkeletonAI.cs
         }
 
         //Movement and attack
         if (System.Math.Abs(player.position.x - transform.position.x) > AttackRangeX)
+=======
+        }
+
+        //Movement and attack
+        if (System.Math.Abs(player.position.x - transform.position.x) > playerRange)
+>>>>>>> 014dd1495059547113de6aebf7610bfbee4f9a10:Assets/Scripts/Enemy Scripts/SkeletonSwordAI/SkeletonAI.cs
         {
             Move();
         }
@@ -50,28 +79,43 @@ public class SkeletonAI : MonoBehaviour
         {
             Idle();
         }
+<<<<<<< HEAD:Assets/Scripts/Enemy Scripts/SkeletonAI.cs
         timeBetweenAttack -= Time.deltaTime;
     }
 
     //Skeleton attack method
+=======
+        timeBetweenAttack -= Time.deltaTime;
+        
+    }
+
+    //Skeleton attack method
+>>>>>>> 014dd1495059547113de6aebf7610bfbee4f9a10:Assets/Scripts/Enemy Scripts/SkeletonSwordAI/SkeletonAI.cs
     void Attack()
     {
         animator.SetFloat("Action", 0);
         animator.SetTrigger("Attack");
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layers);
-        foreach(Collider2D enemy in hitPlayer)
+        foreach(Collider2D player in hitPlayer)
         {
-            Debug.Log("Hit");
+            player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
         }
         timeBetweenAttack = cooldownTime;
+<<<<<<< HEAD:Assets/Scripts/Enemy Scripts/SkeletonAI.cs
     }
 
     //Skeleton walk method
+=======
+
+    }
+
+>>>>>>> 014dd1495059547113de6aebf7610bfbee4f9a10:Assets/Scripts/Enemy Scripts/SkeletonSwordAI/SkeletonAI.cs
     void Move()
     {
         animator.SetFloat("Action", 1);
         float step = Time.deltaTime * 2.5f * speed;
         transform.position = Vector3.MoveTowards(transform.position, player.position, step);
+<<<<<<< HEAD:Assets/Scripts/Enemy Scripts/SkeletonAI.cs
     }
 
     //Skeleton idle method
@@ -81,6 +125,16 @@ public class SkeletonAI : MonoBehaviour
     }
 
     //Skeleton hitbox display
+=======
+    }
+
+    void Idle()
+    {
+        animator.SetFloat("Action", 0);
+
+    }
+
+>>>>>>> 014dd1495059547113de6aebf7610bfbee4f9a10:Assets/Scripts/Enemy Scripts/SkeletonSwordAI/SkeletonAI.cs
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
