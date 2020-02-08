@@ -62,7 +62,7 @@ public class PlayerCombat : MonoBehaviour
         //Damage enemies
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            enemy.GetComponent<SkeletonSwordBehavior>().TakeDamage(attackDamage);
         }
         //Freeze Player for extent of the animation?
     }

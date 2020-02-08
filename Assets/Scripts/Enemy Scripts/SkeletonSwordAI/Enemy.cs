@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     int currentHealth;
     public Animator animator;
     public GameObject GroundCheck;
+
     // Start is called before the first frame update
     void Start()
     {
