@@ -33,7 +33,6 @@ public class SkeletonAI : MonoBehaviour
     private bool moving;
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public float playerRange = 1.2f;
     public LayerMask layers;
     public int attackDamage = 1;
     // Start is called before the first frame update
@@ -63,12 +62,20 @@ public class SkeletonAI : MonoBehaviour
         }
 
         //Movement and attack
+<<<<<<< HEAD
         if (System.Math.Abs(player.position.x - transform.position.x) > playerRange)
 >>>>>>> 014dd1495059547113de6aebf7610bfbee4f9a10:Assets/Scripts/Enemy Scripts/SkeletonSwordAI/SkeletonAI.cs
         {
             Move();
         }
         else if (System.Math.Abs(player.position.y - transform.position.y) < AttackRangeY)
+=======
+        if (System.Math.Abs(player.position.x - transform.position.x) > attackRange)
+        {
+            Move();
+        }
+        else if (System.Math.Abs(player.position.y - transform.position.y) < attackRange)
+>>>>>>> 9e1077ef8fc3c104c28870b4167f07a25740895e
         {
             if (timeBetweenAttack <= 0)
             {
