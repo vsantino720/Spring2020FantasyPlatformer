@@ -31,6 +31,7 @@ public class PlayerCombat : MonoBehaviour
         else
         {
             GetComponent<PlayerMovement>().isDazed = true;
+            animator.SetFloat("Speed", 0);
             dazedTime -= Time.deltaTime;
         }
         if(Time.time >= nextAttackTime)
@@ -58,10 +59,10 @@ public class PlayerCombat : MonoBehaviour
         //Play Death animation
         animator.SetBool("IsDead", true);
         Debug.Log("You Died");
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<Rigidbody2D>().simulated = false;
         GetComponent<PlayerMovement>().enabled = false;
         this.enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().simulated = false;
         //Restart game from beginning
     }
 

@@ -8740,6 +8740,7 @@ MonoBehaviour:
   controller: {fileID: 886005388}
   animator: {fileID: 886005395}
   runSpeed: 40
+  isDazed: 0
 --- !u!212 &886005394
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8829,6 +8830,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   attackDamage: 2
+  dazedTime: 0
+  startDazedTime: 0.6
 --- !u!1 &890075410
 GameObject:
   m_ObjectHideFlags: 0
@@ -11215,7 +11218,7 @@ MonoBehaviour:
   maxHealth: 4
   attackRange: 2.68
   attackDamage: 1
-  startDazedTime: 5
+  startDazedTime: 0.6
 --- !u!95 &2050743620
 Animator:
   serializedVersion: 3
