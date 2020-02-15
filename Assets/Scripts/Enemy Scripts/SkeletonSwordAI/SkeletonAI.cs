@@ -43,19 +43,15 @@ public class SkeletonAI : MonoBehaviour
             if (timeBetweenAttack <= 0)
             {
                 Attack();
-                
             }
-            
         }
         else
         {
             Idle();
         }
         timeBetweenAttack -= Time.deltaTime;
-        
     }
 
-    //Skeleton attack method
     void Attack()
     {
         animator.SetFloat("Action", 0);

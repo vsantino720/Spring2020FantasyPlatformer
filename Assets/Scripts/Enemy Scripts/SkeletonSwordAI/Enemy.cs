@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //**THIS SCRIPT IS TO BE USED AS A TEMPLATE FOR CREATING A DAMAGE SYSTEM FOR FUTURE ENEMIES**//
     public int maxHealth = 4;
     int currentHealth;
     public Animator animator;

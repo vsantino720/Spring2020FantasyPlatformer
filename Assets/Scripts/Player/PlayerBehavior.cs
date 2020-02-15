@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerBehavior : MonoBehaviour
 {
-
+    //**THIS SCRIPT IS BEING USED FOR TESTING PURPOSES AND MAY OR MAY NOT BE USED IN THE FINAL PRODUCT**//
+    //Movement
+    public CharacterController2D controller;
     public Animator animator;
+    public float runSpeed = 40f;
+    float horizontalMove = 0f;
+    bool jump = false;
 
+    //Combat
     public Transform attackpoint;
     public int maxHealth = 12;
     int currentHealth;
@@ -15,37 +21,48 @@ public class PlayerCombat : MonoBehaviour
     float nextAttackTime = 0f;
     public LayerMask enemyLayers;
     public int attackDamage = 2;
-    public float dazedTime;
-    public float startDazedTime = 0.6f;
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         currentHealth = maxHealth;
     }
+
     // Update is called once per frame
     void Update()
     {
-        if(dazedTime <= 0)
+        horizontalMove = (Input.GetAxisRaw("Horizontal") * runSpeed);
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
+        if (Input.GetButtonDown("Jump"))
         {
-            GetComponent<PlayerMovement>().isDazed = false;
-        } 
-        else
-        {
-            GetComponent<PlayerMovement>().isDazed = true;
-            dazedTime -= Time.deltaTime;
+            jump = true;
+            animator.SetBool("IsJumping", true);
         }
-        if(Time.time >= nextAttackTime)
+        
+        if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.F) && animator.GetBool("IsJumping") == false && !GetComponent<PlayerMovement>().isDazed)
+            if (Input.GetKeyDown(KeyCode.F) && animator.GetBool("IsJumping") == false)
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
     }
+    public void OnLanding()
+    {
+        animator.SetBool("IsJumping", false);
+    }
+    private void FixedUpdate()
+    {
+        //Move our character
+        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+        jump = false;
+    }
+
     public void TakeDamage(int damage)
     {
         Debug.Log("Took" + damage + "Damage");
-        dazedTime = startDazedTime;
         currentHealth -= damage;
         animator.SetTrigger("Hurt");
         if (currentHealth <= 0)
@@ -72,13 +89,12 @@ public class PlayerCombat : MonoBehaviour
         //Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
         //Damage enemies
-        foreach(Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<SkeletonSwordBehavior>().TakeDamage(attackDamage);
         }
         //Freeze Player for extent of the animation?
     }
-
     private void OnDrawGizmosSelected()
     {
         if (attackpoint == null)
