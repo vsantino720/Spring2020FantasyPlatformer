@@ -26,11 +26,11 @@ public class PlayerCombat : MonoBehaviour
     {
         if(dazedTime <= 0)
         {
-            GetComponent<PlayerMovement>().isDazed = false;
+            GetComponent<PlayerMovement>().Daze(false);
         } 
         else
         {
-            GetComponent<PlayerMovement>().isDazed = true;
+            GetComponent<PlayerMovement>().Daze(true);
             animator.SetFloat("Speed", 0);
             dazedTime -= Time.deltaTime;
         }
@@ -46,7 +46,7 @@ public class PlayerCombat : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Debug.Log("Took" + damage + "Damage");
-        dazedTime = startDazedTime;
+        dazedTime = startDazedTime; //Initialize dazed countdown
         currentHealth -= damage;
         animator.SetTrigger("Hurt");
         if (currentHealth <= 0)
