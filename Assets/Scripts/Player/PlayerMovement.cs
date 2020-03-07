@@ -13,8 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Combat Restrictions
     public bool isDazed = false;
-    public bool knockFromRight;
-    public float knockback = 10;
+    public bool isAttacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isDazed)
+        if (!isDazed && !isAttacking)
         {
             horizontalMove = (Input.GetAxisRaw("Horizontal") * runSpeed);
 
@@ -36,20 +35,11 @@ public class PlayerMovement : MonoBehaviour
                 jump = true;
                 animator.SetBool("IsJumping", true);
             }
-        }
+        } 
         else
         {
-            if (knockFromRight)
-            {
-                //GetComponent<Rigidbody2D>().AddForce(new Vector2(-knockback, knockback));
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-knockback, knockback);
-                horizontalMove = 0;
-            } 
-            else
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(knockback, knockback);
-                //GetComponent<Rigidbody2D>().AddForce(new Vector2(knockback, knockback)); 
-            }
+            horizontalMove = 0;
+            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         }
     }
 

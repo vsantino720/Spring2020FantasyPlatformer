@@ -8694,8 +8694,7 @@ MonoBehaviour:
   animator: {fileID: 886005395}
   runSpeed: 40
   isDazed: 0
-  knockFromRight: 1
-  knockback: 4
+  isAttacking: 0
 --- !u!212 &886005394
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8787,6 +8786,8 @@ MonoBehaviour:
   attackDamage: 2
   dazedTime: 0
   startDazedTime: 0.6
+  knockback: 15
+  knockFromRight: 0
 --- !u!1 &890075410
 GameObject:
   m_ObjectHideFlags: 0
@@ -10989,10 +10990,12 @@ MonoBehaviour:
   GroundCheck: {fileID: 1676603478}
   speed: 1.3
   cooldownTime: 1.2
-  maxHealth: 4
+  maxHealth: 8
   attackRange: 2.68
   attackDamage: 1
   startDazedTime: 0.6
+  knockback: 2
+  knockFromRight: 0
 --- !u!95 &2050743620
 Animator:
   serializedVersion: 3

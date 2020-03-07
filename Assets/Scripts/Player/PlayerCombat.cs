@@ -17,6 +17,9 @@ public class PlayerCombat : MonoBehaviour
     public int attackDamage = 2;
     public float dazedTime;
     public float startDazedTime = 0.6f;
+    public float knockback = 10;
+    public bool knockFromRight;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -34,8 +37,13 @@ public class PlayerCombat : MonoBehaviour
             animator.SetFloat("Speed", 0);
             dazedTime -= Time.deltaTime;
         }
-        if(Time.time >= nextAttackTime)
+        if (Time.time <= nextAttackTime)
         {
+            GetComponent<PlayerMovement>().isAttacking = true;
+        }
+        if (Time.time >= nextAttackTime)
+        {
+            GetComponent<PlayerMovement>().isAttacking = false;
             if (Input.GetKeyDown(KeyCode.F) && animator.GetBool("IsJumping") == false && !GetComponent<PlayerMovement>().isDazed)
             {
                 Attack();
@@ -49,6 +57,16 @@ public class PlayerCombat : MonoBehaviour
         dazedTime = startDazedTime; //Initialize dazed countdown
         currentHealth -= damage;
         animator.SetTrigger("Hurt");
+        if (knockFromRight)
+        {
+            //GetComponent<Rigidbody2D>().AddForce(new Vector2(-knockback, knockback));
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-1.5f * knockback, knockback);
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(1.5f * knockback, knockback);
+            //GetComponent<Rigidbody2D>().AddForce(new Vector2(knockback, knockback)); 
+        }
         if (currentHealth <= 0)
         {
             Die();
@@ -75,9 +93,16 @@ public class PlayerCombat : MonoBehaviour
         //Damage enemies
         foreach(Collider2D enemy in hitEnemies)
         {
+            if (enemy.transform.position.x < transform.position.x)
+            {
+                enemy.GetComponent<SkeletonSwordBehavior>().knockFromRight = true;
+            }
+            else
+            {
+                enemy.GetComponent<SkeletonSwordBehavior>().knockFromRight = false;
+            }
             enemy.GetComponent<SkeletonSwordBehavior>().TakeDamage(attackDamage);
         }
-        //Freeze Player for extent of the animation?
     }
 
     private void OnDrawGizmosSelected()
