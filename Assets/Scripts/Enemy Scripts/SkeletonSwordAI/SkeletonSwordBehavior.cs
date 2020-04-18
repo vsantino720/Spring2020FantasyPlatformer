@@ -23,6 +23,8 @@ public class SkeletonSwordBehavior : MonoBehaviour
     public int attackDamage = 1;
     private float dazedTime;
     public float startDazedTime = 0.6f;
+    public float knockback;
+    public bool knockFromRight;
     // Start is called before the first frame update
     void Start()
     {
@@ -84,8 +86,16 @@ public class SkeletonSwordBehavior : MonoBehaviour
         animator.SetFloat("Action", 0);
         animator.SetTrigger("Attack");
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layers);
-        foreach (Collider2D player in hitPlayer)
+        foreach (Collider2D player in hitPlayer) //More efficient way to do this??
         {
+            if (player.transform.position.x < transform.position.x)
+            {
+                player.GetComponent<PlayerCombat>().knockFromRight = true;
+            }
+            else
+            {
+                player.GetComponent<PlayerCombat>().knockFromRight = false;
+            }
             player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
         }
         timeBetweenAttack = cooldownTime;
@@ -112,7 +122,14 @@ public class SkeletonSwordBehavior : MonoBehaviour
         Debug.Log("Took" + damage + "damage");
         // Play hurt animation
         animator.SetTrigger("Hurt");
-
+        if (knockFromRight)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-1.5f * knockback, knockback);
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(1.5f * knockback, knockback);
+        }
         if (currentHealth <= 0)
         {
             Die();

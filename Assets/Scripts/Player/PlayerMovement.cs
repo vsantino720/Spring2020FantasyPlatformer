@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
 
+    //Combat Restrictions
+    public bool isDazed = false;
+    public bool isAttacking = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +24,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = (Input.GetAxisRaw("Horizontal") * runSpeed);
-
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-
-        if (Input.GetButtonDown("Jump"))
+        if (!isDazed && !isAttacking)
         {
-            jump = true;
-            animator.SetBool("IsJumping", true);
+            horizontalMove = (Input.GetAxisRaw("Horizontal") * runSpeed);
+
+            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+                animator.SetBool("IsJumping", true);
+            }
+        } 
+        else
+        {
+            horizontalMove = 0;
+            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         }
     }
 
@@ -41,6 +53,11 @@ public class PlayerMovement : MonoBehaviour
         //Move our character
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
+    }
+
+    public void Daze(bool daze)
+    {
+        isDazed = daze;
     }
 
 }

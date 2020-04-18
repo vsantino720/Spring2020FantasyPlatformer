@@ -49,8 +49,13 @@ public class SkeletonAI : MonoBehaviour
         {
             Idle();
         }
+<<<<<<< HEAD
         timeBetweenAttack -= Time.deltaTime;
     }
+=======
+        timeBetweenAttack -= Time.deltaTime;
+    }
+>>>>>>> acd5895815bb37961ceae90625503d92d2a982b0
 
     void Attack()
     {
