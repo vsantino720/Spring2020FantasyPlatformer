@@ -8779,7 +8779,7 @@ MonoBehaviour:
   attackpoint: {fileID: 567354306}
   maxHealth: 6
   attackRange: 1.62
-  attackRate: 2
+  attackRate: 2.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 512
@@ -10972,6 +10972,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 886005390}
+    - target: {fileID: 361736390333898040, guid: be121b35fae9978468bc319608c12895,
+        type: 3}
+      propertyPath: maxHealth
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 361736390333898041, guid: be121b35fae9978468bc319608c12895,
         type: 3}
       propertyPath: m_Name
