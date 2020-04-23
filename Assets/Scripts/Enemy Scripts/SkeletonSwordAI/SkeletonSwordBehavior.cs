@@ -67,9 +67,11 @@ public class SkeletonSwordBehavior : MonoBehaviour
         {
             if ((timeBetweenAttack <= 0) && (dazedTime <= 0))
             {
-
-                Attack();
-
+                //Call Attack Animation
+                animator.SetFloat("Action", 0);
+                animator.SetTrigger("Attack");
+                //Set Cooldown Time
+                timeBetweenAttack = cooldownTime;
             }
 
         }
@@ -83,8 +85,6 @@ public class SkeletonSwordBehavior : MonoBehaviour
     //Skeleton attack method
     void Attack()
     {
-        animator.SetFloat("Action", 0);
-        animator.SetTrigger("Attack");
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layers);
         foreach (Collider2D player in hitPlayer) //More efficient way to do this??
         {
@@ -98,7 +98,6 @@ public class SkeletonSwordBehavior : MonoBehaviour
             }
             player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
         }
-        timeBetweenAttack = cooldownTime;
 
     }
 
