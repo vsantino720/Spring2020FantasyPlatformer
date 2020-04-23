@@ -46,7 +46,8 @@ public class PlayerCombat : MonoBehaviour
             GetComponent<PlayerMovement>().isAttacking = false;
             if (Input.GetKeyDown(KeyCode.F) && animator.GetBool("IsJumping") == false && !GetComponent<PlayerMovement>().isDazed)
             {
-                Attack();
+                //Play attack animation
+                animator.SetTrigger("Attack");
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
@@ -60,11 +61,11 @@ public class PlayerCombat : MonoBehaviour
         if (knockFromRight)
         {
             //GetComponent<Rigidbody2D>().AddForce(new Vector2(-knockback, knockback));
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-1.5f * knockback, knockback);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-2f * knockback, knockback);
         }
         else
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(1.5f * knockback, knockback);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(2f * knockback, knockback);
             //GetComponent<Rigidbody2D>().AddForce(new Vector2(knockback, knockback)); 
         }
         if (currentHealth <= 0)
@@ -86,8 +87,6 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-        //Play attack animation
-        animator.SetTrigger("Attack");
         //Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
         //Damage enemies
