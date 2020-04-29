@@ -202,9 +202,9 @@ MonoBehaviour:
   attackPoint: {fileID: 5396004197668962667}
   GroundCheck: {fileID: 5396004199304066137}
   speed: 1.3
-  cooldownTime: 1.2
+  cooldownTime: 0.3
   maxHealth: 6
-  attackRange: 2.68
+  attackRange: 1.75
   attackDamage: 1
   startDazedTime: 0.6
   knockback: 2

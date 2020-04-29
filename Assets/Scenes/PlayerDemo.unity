@@ -8778,8 +8778,8 @@ MonoBehaviour:
   animator: {fileID: 886005395}
   attackpoint: {fileID: 567354306}
   maxHealth: 6
-  attackRange: 1.62
-  attackRate: 2.5
+  attackRange: 1.41
+  attackRate: 2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 512
@@ -10989,12 +10989,12 @@ PrefabInstance:
     - target: {fileID: 5396004198416250129, guid: be121b35fae9978468bc319608c12895,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.9
+      value: 3.65
       objectReference: {fileID: 0}
     - target: {fileID: 5396004198416250129, guid: be121b35fae9978468bc319608c12895,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.68
+      value: 2.33
       objectReference: {fileID: 0}
     - target: {fileID: 5396004198416250129, guid: be121b35fae9978468bc319608c12895,
         type: 3}
