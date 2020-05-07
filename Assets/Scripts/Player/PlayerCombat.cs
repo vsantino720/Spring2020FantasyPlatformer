@@ -8,8 +8,9 @@ public class PlayerCombat : MonoBehaviour
     public Animator animator;
 
     public Transform attackpoint;
-    public int maxHealth = 12;
+    public int maxHealth = 6;
     int currentHealth;
+    public HealthBar healthBar;
     public float attackRange = 0.5f;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -23,6 +24,7 @@ public class PlayerCombat : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxValue(maxHealth); 
     }
     // Update is called once per frame
     void Update()
@@ -68,6 +70,10 @@ public class PlayerCombat : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(2f * knockback, knockback);
             //GetComponent<Rigidbody2D>().AddForce(new Vector2(knockback, knockback)); 
         }
+
+        //Changes UI Health Bar
+        healthBar.SetHealth(currentHealth);
+
         if (currentHealth <= 0)
         {
             Die();
