@@ -9,7 +9,6 @@ public class SkeletonSwordBehavior : MonoBehaviour
     public Transform player;
     public LayerMask layers;
     public Transform attackPoint;
-    public GameObject GroundCheck;
 
     //Movement Vars
     public float speed = 1.0f;
@@ -142,7 +141,6 @@ public class SkeletonSwordBehavior : MonoBehaviour
         Debug.Log("Enemy Died!");
         //Disable the enemy
         GetComponent<Collider2D>().enabled = false;
-        GroundCheck.GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().simulated = false;
         this.enabled = false;
     }

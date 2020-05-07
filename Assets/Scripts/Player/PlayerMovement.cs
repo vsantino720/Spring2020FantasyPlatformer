@@ -35,7 +35,16 @@ public class PlayerMovement : MonoBehaviour
                 jump = true;
                 animator.SetBool("IsJumping", true);
             }
-        } 
+            if (controller.m_Grounded == true && gameObject.layer != 8)
+            {
+                gameObject.layer = 8;
+            }
+
+            if (controller.m_Grounded == true && Input.GetAxisRaw("Vertical") < 0)
+            {
+                gameObject.layer = 10;
+            }
+        }
         else
         {
             horizontalMove = 0;
