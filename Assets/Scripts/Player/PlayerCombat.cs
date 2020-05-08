@@ -79,7 +79,7 @@ public class PlayerCombat : MonoBehaviour
             Die();
         }
     }
-    void Die()
+    public void Die()
     {
         //Play Death animation
         animator.SetBool("IsDead", true);
@@ -91,7 +91,7 @@ public class PlayerCombat : MonoBehaviour
         //Restart game from beginning
     }
 
-    void Attack()
+    public void Attack()
     {
         //Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackpoint.position, attackRange, enemyLayers);
@@ -117,5 +117,22 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackpoint.position, attackRange);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //Checks that this is the health potion object
+        if (other.gameObject.tag.Equals("HealthPotion"))
+        {
+            //Makes sure the player will not gain health above max health
+            if (currentHealth < maxHealth)
+            {
+                this.currentHealth += 1;
+                //Updates UI
+                healthBar.SetHealth(currentHealth);
+                //Disables Health potion object
+                other.gameObject.SetActive(false);
+            }
+        }
     }
 }
