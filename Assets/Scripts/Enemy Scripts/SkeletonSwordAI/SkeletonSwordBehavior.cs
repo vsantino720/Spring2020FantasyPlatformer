@@ -89,11 +89,11 @@ public class SkeletonSwordBehavior : MonoBehaviour
         {
             if (player.transform.position.x < transform.position.x)
             {
-                player.GetComponent<PlayerCombat>().knockFromRight = true;
+                player.GetComponent<PlayerCombat>().knockRight();
             }
             else
             {
-                player.GetComponent<PlayerCombat>().knockFromRight = false;
+                player.GetComponent<PlayerCombat>().knockLeft();
             }
             player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
         }

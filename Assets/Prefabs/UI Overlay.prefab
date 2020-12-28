@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -428.97, y: 324}
+  m_AnchoredPosition: {x: -348, y: 174}
   m_SizeDelta: {x: 120.69, y: 35.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5516930666333846717
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 5516930668165259453}
   - component: {fileID: 5516930668165259452}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

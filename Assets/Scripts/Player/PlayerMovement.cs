@@ -5,15 +5,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public CharacterController2D controller;
-    public Animator animator;
-    public float runSpeed = 40f;
-    float horizontalMove = 0f;
-    bool jump = false;
+    [SerializeField] private CharacterController2D controller;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float runSpeed = 40f;
+    [SerializeField] private float horizontalMove = 0f;
+    [SerializeField] private bool jump = false;
 
     //Combat Restrictions
-    public bool isDazed = false;
-    public bool isAttacking = false;
+    [SerializeField] private bool isDazed = false;
+    [SerializeField] private bool isAttacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && controller.m_Grounded == true)
             {
                 jump = true;
                 animator.SetBool("IsJumping", true);
@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnLanding()
     {
+        Debug.Log("Player Landed.");
         animator.SetBool("IsJumping", false);
     }
 
@@ -67,6 +68,16 @@ public class PlayerMovement : MonoBehaviour
     public void Daze(bool daze)
     {
         isDazed = daze;
+    }
+
+    public void setAttacking(bool attacking)
+    {
+        isAttacking = attacking;
+    }
+
+    public bool getDazed()
+    {
+        return isDazed;
     }
 
 }

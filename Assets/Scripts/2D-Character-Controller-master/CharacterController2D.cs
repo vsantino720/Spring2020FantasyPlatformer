@@ -10,7 +10,10 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
-	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
+	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+
+	private System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch(); //A stopwatch to ensure that the OnLandEvent is not invoked more than once.
+	[SerializeField] private float GroundedWait = 60f;
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	public bool m_Grounded;            // Whether or not the player is grounded.
@@ -43,7 +46,11 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		bool wasGrounded = m_Grounded;
+		if (!m_Grounded)
+        {
+			sw.Start();
+        }
+
 		m_Grounded = false;
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -53,9 +60,11 @@ public class CharacterController2D : MonoBehaviour
 		{
 			if (colliders[i].gameObject != gameObject)
 			{
+				sw.Stop();
 				m_Grounded = true;
-				if (!wasGrounded)
+				if (sw.ElapsedMilliseconds > (GroundedWait))
 					OnLandEvent.Invoke();
+					sw.Reset();
 			}
 		}
 	}

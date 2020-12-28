@@ -5,21 +5,21 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
 
-    public Animator animator;
+    [SerializeField] private Animator animator;
 
-    public Transform attackpoint;
-    public int maxHealth = 6;
-    int currentHealth;
-    public HealthBar healthBar;
-    public float attackRange = 0.5f;
-    public float attackRate = 2f;
-    float nextAttackTime = 0f;
-    public LayerMask enemyLayers;
-    public int attackDamage = 2;
-    public float dazedTime;
-    public float startDazedTime = 0.6f;
-    public float knockback = 10;
-    public bool knockFromRight;
+    [SerializeField] private Transform attackpoint;
+    [SerializeField] private int maxHealth = 6;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private float attackRate = 2f;
+    [SerializeField] private float nextAttackTime = 0f;
+    [SerializeField] private LayerMask enemyLayers;
+    [SerializeField] private int attackDamage = 2;
+    [SerializeField] private float dazedTime;
+    [SerializeField] private float startDazedTime = 0.6f;
+    [SerializeField] private float knockback = 10;
+    [SerializeField] private bool knockFromRight;
 
     private void Start()
     {
@@ -41,12 +41,12 @@ public class PlayerCombat : MonoBehaviour
         }
         if (Time.time <= nextAttackTime)
         {
-            GetComponent<PlayerMovement>().isAttacking = true;
+            GetComponent<PlayerMovement>().setAttacking(true);
         }
         if (Time.time >= nextAttackTime)
         {
-            GetComponent<PlayerMovement>().isAttacking = false;
-            if (Input.GetKeyDown(KeyCode.F) && animator.GetBool("IsJumping") == false && !GetComponent<PlayerMovement>().isDazed)
+            GetComponent<PlayerMovement>().setAttacking(false);
+            if (Input.GetKeyDown(KeyCode.F) && animator.GetBool("IsJumping") == false && !GetComponent<PlayerMovement>().getDazed())
             {
                 //Play attack animation
                 animator.SetTrigger("Attack");
@@ -134,5 +134,15 @@ public class PlayerCombat : MonoBehaviour
                 other.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void knockRight()
+    {
+        knockFromRight = true;
+    }
+
+    public void knockLeft()
+    {
+        knockFromRight = false;
     }
 }
