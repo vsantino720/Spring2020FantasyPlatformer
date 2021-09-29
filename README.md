@@ -6,3 +6,5 @@ This image showcases a demo level we have created.
 <img src="https://github.com/vsantino720/Spring2020FantasyPlatformer/blob/master/Screenshots/PlayerDemoScreenshot.jpg?raw=true">
 This image showcases a skeleton enemy type mid-attack and a dead player laying beneath.
 <img src="https://github.com/vsantino720/Spring2020FantasyPlatformer/blob/master/Screenshots/PlayerDeadScreenshot.jpg?raw=true">
+
+Here is a link to a gameplay demo: https://www.youtube.com/watch?v=Tc1F2IMnaGE
